@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
-    <xsd:element name="guns" type="Guns" />
+    <xsd:element name="trips" type="trips" />
 
-    <xsd:complexType name="Guns">
+    <xsd:complexType name="trips">
         <xsd:sequence>
-            <xsd:element name="gun" type="Gun" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="tourist voucher" type="Тourist_voucher" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
     </xsd:complexType>
 
-    <xsd:complexType name="Gun">
+    <xsd:complexType name="Тourist_voucher">
         <xsd:sequence>
             <xsd:element name="id"  type="idType"/>
-            <xsd:element name="model" type="Model"/>
-            <xsd:element name="handy" type="Handy"/>
-            <xsd:element name="origin" type="xsd:string"/>
-            <xsd:element name="ttc" type="TTC"/>
-            <xsd:element name="material" type="xsd:string"/>
+            <xsd:element name="type" type="Type"/>
+            <xsd:element name="country" type="xsd:string"/>
+            <xsd:element name="duration" type="xsd:decimal"/>
+            <xsd:element name="transport" type="Transport"/>
+            <xsd:element name="hc" type="HC"/>
+            <xsd:element name="cost" type="xsd:decimal"/>
         </xsd:sequence>
     </xsd:complexType>
 
@@ -26,44 +27,39 @@
         </xsd:restriction>
     </xsd:simpleType>
 
-    <xsd:simpleType name="Model">
+    <xsd:simpleType name="Type">
         <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="pistol"/>
-            <xsd:enumeration value="rifle"/>
-            <xsd:enumeration value="revolver"/>
-            <xsd:enumeration value="shotgun"/>
-            <xsd:enumeration value="grenade_launcher"/>
-            <xsd:enumeration value="grenade"/>
+            <xsd:enumeration value="excursion"/>
+            <xsd:enumeration value="holiday"/>
+            <xsd:enumeration value="resort"/>
+            <xsd:enumeration value="pilgrimage"/>
         </xsd:restriction>
     </xsd:simpleType>
 
-    <xsd:simpleType name="Handy">
+    <xsd:simpleType name="Transport">
         <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="single" />
-            <xsd:enumeration value="double" />
+            <xsd:enumeration value="helicopter" />
+            <xsd:enumeration value="bus"/>
+            <xsd:enumeration value="bicycle"/>
+            <xsd:enumeration value="ship"/>
+            <xsd:enumeration value="without"/>
         </xsd:restriction>
     </xsd:simpleType>
 
-    <xsd:complexType name="TTC">
+    <xsd:complexType name="HC">
         <xsd:sequence>
-            <xsd:element name="range_type" type="RangeType"/>
-            <xsd:element name="aiming_range" type="AimingRange"/>
-            <xsd:element name="holder" type="xsd:boolean"/>
-            <xsd:element name="optics" type="xsd:boolean"/>
+            <xsd:element name="food" type="Food"/>
+            <xsd:element name="stars" type="xsd:decimal"/>
+            <xsd:element name="aircooler" type="xsd:boolean"/>
+            <xsd:element name="tv" type="xsd:boolean"/>
         </xsd:sequence>
     </xsd:complexType>
 
-    <xsd:simpleType name="RangeType">
+    <xsd:simpleType name="Food">
         <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="short"/>
-            <xsd:enumeration value="medium"/>
-            <xsd:enumeration value="long"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="AimingRange">
-        <xsd:restriction base="xsd:decimal">
-            <xsd:minExclusive value="0"></xsd:minExclusive>
+            <xsd:enumeration value="HB"/>
+            <xsd:enumeration value="BB"/>
+            <xsd:enumeration value="A1"/>
         </xsd:restriction>
     </xsd:simpleType>
 
