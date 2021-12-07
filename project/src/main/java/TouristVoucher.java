@@ -1,7 +1,12 @@
 public class TouristVoucher {
+
     int id;
-
-
+    //enum
+    String country;
+    int duration;
+    //enum
+    //class
+    int cost;
 
 }
 //<trips>
