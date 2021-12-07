@@ -1,3 +1,5 @@
+package TouristVoucher;
+
 public enum Type {
 
 //                <xsd:enumeration value="excursion"/>
