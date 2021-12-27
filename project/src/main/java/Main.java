@@ -1,4 +1,5 @@
 import parser.MyDOMParser;
+import parser.MyStAXParser;
 import tourist_voucher.TouristVoucher;
 import validator.ValidatorXML;
 
@@ -19,6 +20,14 @@ public class Main {
                                         System.out.println(k.getId());
                                 }
                                 System.out.println();
+
+                                System.out.println("StAX parser");
+                                MyStAXParser p3 = new MyStAXParser( "xml/tourist_vouchers.xml", "tourist_voucher.xsd");
+                                touristVouchers = p3.parseXML();
+                                for (TouristVoucher k : touristVouchers){
+                                        System.out.println(k.getId());
+                                }
+                            System.out.println("End");
 
                         } catch (IOException e) {
                                 e.printStackTrace();
