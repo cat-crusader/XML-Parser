@@ -1,0 +1,17 @@
+<touristvouchers>
+    <touristvoucher>
+        <id>001</id>
+        <type>excursion</type>
+        <country>Ukraine</country>
+        <duration>7</duration>
+        <transport>helicopter</transport>
+        <hc>
+            <food>BB</food>
+            <stars>5</stars>
+            <aircooler>true</aircooler>
+            <tv>false</tv>
+        </hc>
+        <cost>10000</cost>
+    </touristvoucher>
+
+</touristvouchers>

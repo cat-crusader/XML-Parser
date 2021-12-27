@@ -8,7 +8,7 @@ public class Main {
 
         public static void main(String[] args) {
                 System.out.println("lol");
-                System.out.println(ValidatorXML.validateAgainstXSD("touristvoucher.xml", "touristvoucher.xsd"));
+                System.out.println(ValidatorXML.validateAgainstXSD("tourist_voucher.xml", "tourist_voucher.xsd"));
         }
 
 }

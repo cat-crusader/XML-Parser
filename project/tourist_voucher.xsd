@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <xsd:element name="touristvouchers" type="touristvouchers" />
+
+    <xsd:complexType name="touristvouchers">
+        <xsd:sequence>
+            <xsd:element name="touristvoucher" type="touristvoucher" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="touristvoucher">
+        <xsd:sequence>
+            <xsd:element name="id"  type="id"/>
+            <xsd:element name="type" type="type"/>
+            <xsd:element name="country" type="xsd:string"/>
+            <xsd:element name="duration" type="xsd:decimal"/>
+            <xsd:element name="transport" type="transport"/>
+            <xsd:element name="hc" type="hc"/>
+            <xsd:element name="cost" type="xsd:decimal"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="id">
+        <xsd:restriction base="xsd:integer">
+            <xsd:pattern value="[0-9][0-9][0-9]"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="type">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="excursion"/>
+            <xsd:enumeration value="holiday"/>
+            <xsd:enumeration value="resort"/>
+            <xsd:enumeration value="pilgrimage"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="transport">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="helicopter" />
+            <xsd:enumeration value="bus"/>
+            <xsd:enumeration value="bicycle"/>
+            <xsd:enumeration value="ship"/>
+            <xsd:enumeration value="without"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="hc">
+        <xsd:sequence>
+            <xsd:element name="food" type="food"/>
+            <xsd:element name="stars" type="xsd:decimal"/>
+            <xsd:element name="aircooler" type="xsd:boolean"/>
+            <xsd:element name="tv" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="food">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="HB"/>
+            <xsd:enumeration value="BB"/>
+            <xsd:enumeration value="A1"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>
