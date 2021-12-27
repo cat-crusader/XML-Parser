@@ -12,15 +12,16 @@ public class TouristVoucher implements  Comparable {
     HC hc;
     Integer cost;
 
-    public TouristVoucher(Integer _id,Type _type,
+    public TouristVoucher(Integer _id,String _type,
                           String _country,Integer _duration,
-                          Transport _transport, HC _hc, Integer _cost){
+                          String _transport, String _hc, Integer _cost,
+                          String _food,Integer _stars,boolean _aircooler,boolean _tv){
         id=_id;
-        type=_type;
+        type=Type.valueOf(_type);
         country=_country;
         duration=_duration;
-        transport=_transport;
-        hc=_hc;
+        transport=Transport.valueOf(_transport);
+        hc=new HC(_food,_stars,_aircooler,_tv);
         cost=_cost;
     }
 
