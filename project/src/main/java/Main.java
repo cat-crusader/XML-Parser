@@ -13,10 +13,10 @@ public class Main {
                                 System.out.println("Validator lol:");
                                 System.out.println(ValidatorXML.validateAgainstXSD("tourist_voucher.xml", "tourist_voucher.xsd"));
                                 System.out.println("DOM parser");
-                                MyDOMParser p = new MyDOMParser( "file here", "tourist_voucher.xsd");
+                                MyDOMParser p = new MyDOMParser( "xml/tourist_vouchers.xml", "tourist_voucher.xsd");
                                 List<TouristVoucher> touristVouchers = p.parseXML();
                                 for (TouristVoucher k : touristVouchers){
-                                        System.out.println(k);
+                                        System.out.println(k.getId());
                                 }
                                 System.out.println();
 

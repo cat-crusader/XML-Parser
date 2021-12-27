@@ -1,0 +1,45 @@
+<touristvouchers>
+    <touristvoucher>
+        <id>001</id>
+        <type>excursion</type>
+        <country>Ukraine</country>
+        <duration>7</duration>
+        <transport>helicopter</transport>
+        <hc>
+            <food>BB</food>
+            <stars>5</stars>
+            <aircooler>true</aircooler>
+            <tv>false</tv>
+        </hc>
+        <cost>10000</cost>
+    </touristvoucher>
+    <touristvoucher>
+        <id>003</id>
+        <type>pilgrimage</type>
+        <country>Japan</country>
+        <duration>28</duration>
+        <transport>ship</transport>
+        <hc>
+            <food>BB</food>
+            <stars>10</stars>
+            <aircooler>false</aircooler>
+            <tv>false</tv>
+        </hc>
+        <cost>9000</cost>
+    </touristvoucher>
+    <touristvoucher>
+        <id>055</id>
+        <type>holiday</type>
+        <country>Ukraine</country>
+        <duration>2</duration>
+        <transport>without</transport>
+        <hc>
+            <food>A1</food>
+            <stars>4</stars>
+            <aircooler>true</aircooler>
+            <tv>true</tv>
+        </hc>
+        <cost>1000</cost>
+    </touristvoucher>
+
+</touristvouchers>

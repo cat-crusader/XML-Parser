@@ -5,7 +5,7 @@ public enum Type {
     excursion,
     holiday,
     resort,
-    piligrimage
+    pilgrimage
 //                <xsd:enumeration value="excursion"/>
 //            <xsd:enumeration value="holiday"/>
 //            <xsd:enumeration value="resort"/>
