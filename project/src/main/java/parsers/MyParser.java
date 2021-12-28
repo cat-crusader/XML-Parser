@@ -1,4 +1,4 @@
-package parser;
+package parsers;
 
 import tourist_voucher.TouristVoucher;
 import validator.ValidatorXML;

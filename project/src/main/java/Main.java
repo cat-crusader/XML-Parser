@@ -1,5 +1,5 @@
-import parser.MyDOMParser;
-import parser.MyStAXParser;
+import parsers.MyDOMParser;
+import parsers.MyStAXParser;
 import tourist_voucher.TouristVoucher;
 import validator.ValidatorXML;
 

@@ -1,7 +1,6 @@
-package parser;
+package parsers;
 import tourist_voucher.TouristVoucher;
 
-import javax.naming.NameNotFoundException;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
