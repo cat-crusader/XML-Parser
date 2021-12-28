@@ -25,7 +25,7 @@ public class MyHandler extends DefaultHandler {
 
     private String tag = "no tag";
 
-    public List<TouristVoucher> getKnives() {
+    public List<TouristVoucher> getTouristVouchers() {
         return touristVouchers;
     }
 
@@ -76,7 +76,7 @@ public class MyHandler extends DefaultHandler {
         }
         tag = "no tag";
 
-        if (qName.equalsIgnoreCase("knife")) {
+        if (qName.equalsIgnoreCase("touristvoucher")) {
             touristVouchers.add(new TouristVoucher(id, type, country, duration, transport, hc,
                     cost, food, stars, aircooler, tv));
         }
