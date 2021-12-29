@@ -11,7 +11,9 @@ public class TouristVoucher implements  Comparable {
     Transport transport;
     HC hc;
     Integer cost;
+    public TouristVoucher(){
 
+    }
     public TouristVoucher(Integer _id,String _type,
                           String _country,Integer _duration,
                           String _transport, String _hc, Integer _cost,

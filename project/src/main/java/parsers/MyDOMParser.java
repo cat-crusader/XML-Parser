@@ -15,65 +15,58 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyDOMParser extends MyParser {
-        public MyDOMParser(String xml_path, String xsd_path) {
-                super(xml_path,xsd_path);
-        }
+public class MyDOMParser implements ParserXML {
+        private XMLHandler handler;
 
-        public List<TouristVoucher> parseXML() throws IOException {
-                if (!validateXMLByXSD())
-                        throw new IOException();
-                List<TouristVoucher> touristVouchers = new ArrayList<>();
-                DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+        MyDOMParser(XMLHandler _handler){
+                handler=_handler;
+        }
+        @Override
+        public void parse(String xmlPath) {
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder builder;
+                Document doc = null;
                 try {
-                        builder = builderFactory.newDocumentBuilder();
-                        Document document;
-                        document = (Document) builder.parse(new File(xml_path));
-                        Element rootElement = document.getDocumentElement();
-                        NodeList nodes = rootElement.getChildNodes();
-                        for (int i = 0; i < nodes.getLength(); i++) {
-                                Node node = nodes.item(i);
-                                if (node instanceof Element touristVoucher) {
-                                        int id = Integer.parseInt(touristVoucher.getElementsByTagName("id")
-                                                .item(0)
-                                                .getTextContent());
-                                        String type = touristVoucher.getElementsByTagName("type")
-                                                .item(0)
-                                                .getTextContent();
-                                        String country = touristVoucher.getElementsByTagName("country")
-                                                .item(0)
-                                                .getTextContent();
-                                        int duration = Integer.parseInt(touristVoucher.getElementsByTagName("duration")
-                                                .item(0)
-                                                .getTextContent());
-                                        String transport = touristVoucher.getElementsByTagName("transport")
-                                                .item(0)
-                                                .getTextContent();
-                                        String hc = touristVoucher.getElementsByTagName("hc")
-                                                .item(0)
-                                                .getTextContent();
-                                        int cost = Integer.parseInt(touristVoucher.getElementsByTagName("cost")
-                                                .item(0)
-                                                .getTextContent());
-                                        String food = touristVoucher.getElementsByTagName("food")
-                                                .item(0)
-                                                .getTextContent();
-                                        int stars = Integer.parseInt(touristVoucher.getElementsByTagName("stars")
-                                                .item(0)
-                                                .getTextContent());
-                                        boolean aircooler = Boolean.parseBoolean(touristVoucher.getElementsByTagName("aircooler")
-                                                .item(0)
-                                                .getTextContent());
-                                        boolean tv = Boolean.parseBoolean(touristVoucher.getElementsByTagName("tv")
-                                                .item(0)
-                                                .getTextContent());
-                                        touristVouchers.add(new TouristVoucher(id,type,country,duration,transport,hc,cost,food,stars,aircooler,tv));
+                        builder = factory.newDocumentBuilder();
+                        doc = builder.parse(xmlPath);
+                } catch (ParserConfigurationException | SAXException | IOException e) {}
+
+                Element root = doc.getDocumentElement();
+
+                NodeList gunsNodes = root.getElementsByTagName(handler.name);
+
+                for (int i = 0; i < gunsNodes.getLength(); i++) {
+
+                        Element gunElem = (Element) gunsNodes.item(i);
+                        NodeList childNodes = gunElem.getChildNodes();
+
+                        for (int j = 0; j < childNodes.getLength(); j++) {
+                                if (childNodes.item(j).getNodeType() == Node.ELEMENT_NODE) {
+
+                                        Element child = (org.w3c.dom.Element) childNodes.item(j);
+
+                                        handler.setTag(child.getNodeName(), getChildValue(gunElem, child.getNodeName()));
+                                        NodeList childChildNodes = child.getChildNodes();
+
+                                        for (int k = 0; k < childChildNodes.getLength(); k++) {
+                                                if (childChildNodes.item(k).getNodeType() == Node.ELEMENT_NODE) {
+                                                        Element childChild = (org.w3c.dom.Element) childChildNodes.item(k);
+                                                        handler.setTag(childChild.getNodeName(), getChildValue(child, childChild.getNodeName()));
+                                                }
+                                        }
                                 }
                         }
-                } catch (ParserConfigurationException | SAXException | IOException e) {
-                        e.printStackTrace();
+                        handler.endTag(gunElem.getNodeName());
                 }
-                return touristVouchers;
         }
+        private static String getChildValue(Element element, String name) {
+                Element child = (Element) element.getElementsByTagName(name).item(0);
+                if (child == null) {
+                        return new String();
+                }
+                Node node = child.getFirstChild();
+                return node.getNodeValue();
+        }
+        
+
 }
