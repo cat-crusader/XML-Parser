@@ -11,25 +11,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySAXParser extends MyParser{
-    public MySAXParser(String xml_path, String xsd_path){
-        super(xml_path, xsd_path);
+public class MySAXParser implements ParserXML{
+private XMLHandler handler;
+
+    public MySAXParser(XMLHandler _handler){
+        handler=_handler;
     }
+
     @Override
-    public List<TouristVoucher> parseXML() throws IOException {
-        if (!validateXMLByXSD())
-            throw new IOException();
-        List<TouristVoucher> touristVouchers = new ArrayList<>();
+    public void parse(String xmlPath) {
         SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
         try {
             SAXParser saxParser = saxParserFactory.newSAXParser();
-            MyHandler handler = new MyHandler();
-            saxParser.parse(new File(xml_path), handler);
-            touristVouchers = handler.getTouristVouchers();
+            SAXHandler saxHandler = new SAXHandler(handler);
+            saxParser.parse(new File(xmlPath), saxHandler);
 
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
+            throw new IllegalArgumentException("Error: " + e.getMessage());
         }
-        return touristVouchers;
     }
 }

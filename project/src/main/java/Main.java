@@ -26,6 +26,10 @@ public class Main {
                 System.out.println("StAX parser");
                 pars.parse("xml/tourist_vouchers.xml","tourist_voucher.xsd","stax");
 
+                System.out.println();
+                System.out.println("SAX parser");
+                pars.parse("xml/tourist_vouchers.xml","tourist_voucher.xsd","sax");
+
 //                                MyDOMParser p = new MyDOMParser( "xml/tourist_vouchers.xml", "tourist_voucher.xsd");
 //                                List<TouristVoucher> touristVouchers = p.parseXML();
 //                                for (TouristVoucher k : touristVouchers){
