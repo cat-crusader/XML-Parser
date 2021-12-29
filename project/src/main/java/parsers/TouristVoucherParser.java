@@ -8,23 +8,26 @@ import java.util.List;
 
 public class TouristVoucherParser {
 
-    private MyParser parser;
+    private ParserXML parser;
     private TouristVouchers result;
     private XMLHandler handler;
 
-    public List<TouristVoucher> parse(String xmlPath, String xsdPath, String parserName){
+    public TouristVouchers parse(String xmlPath, String xsdPath, String parserName){
         if(ValidatorXML.validateAgainstXSD(xmlPath,xsdPath)){
             switch (parserName.toUpperCase()){
                 case "SAX":{
-                    handler = new XMLHandler();
-                    parser = new MySAXParser(xmlPath,xsdPath);
-                    parser.parseXML();
-                    result = new TouristVouchers();
+//                    handler = new XMLHandler();
+//                    parser = new MySAXParser(xmlPath,xsdPath);
+//                    parser.parseXML();
+//                    result = new TouristVouchers();
 
                     break;
                 }
                 case "DOM":{
-
+                    handler = new XMLHandler();
+                    parser = new MyDOMParser(handler);
+                    parser.parse(xmlPath);
+                    result = new TouristVouchers(handler.getTouristVouchers());
                     break;
                 }
                 case "STAX":{
@@ -37,7 +40,8 @@ public class TouristVoucherParser {
 
             }
 
-
+            result.sort();
+            System.out.println(result);
         }
         return result;
     }

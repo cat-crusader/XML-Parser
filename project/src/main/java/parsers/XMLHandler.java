@@ -1,6 +1,6 @@
 package parsers;
 
-import tourist_voucher.TouristVoucher;
+import tourist_voucher.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,13 @@ public class XMLHandler {
         touristVouchers = new ArrayList<>();
         name = "touristvoucher";
     }
+
+    public TouristVoucher getTouristVoucher()
+    {return touristVoucher;}
+
+    public List<TouristVoucher> getTouristVouchers()
+    {return touristVouchers;}
+
     public void setTag(String element, String value){
         switch (element.toLowerCase()){
             case "touristvoucher":
@@ -30,16 +37,13 @@ public class XMLHandler {
                 touristVoucher.setDuration(Integer.parseInt(value));
                 break;
             case "transport":
-                touristVoucher.setTransport(value);
-                break;
-            case "hc":
-                touristVoucher.setHc(value);
+                touristVoucher.setTransport(Transport.valueOf(value));
                 break;
             case "cost":
                 touristVoucher.setCost(Integer.parseInt(value));
                 break;
             case "food":
-                touristVoucher.getHc().setFood(value);
+                touristVoucher.getHc().setFood(Food.valueOf(value));
                 break;
             case "stars":
                 touristVoucher.getHc().setStars(Integer.parseInt(value));
@@ -48,7 +52,7 @@ public class XMLHandler {
                 touristVoucher.getHc().setAircooler(Boolean.parseBoolean(value));
                 break;
             case "tv":
-                touristVoucher.getHc().setTv(Boolean.parseBoolean(value);
+                touristVoucher.getHc().setTv(Boolean.parseBoolean(value));
                 break;
             default:
                 break;

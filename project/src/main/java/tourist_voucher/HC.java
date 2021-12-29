@@ -10,6 +10,9 @@ public class HC {
     private boolean aircooler;
     private boolean tv;
 
+    public HC(){
+
+    }
     public HC(String _food,int _stars,boolean _aircooler,boolean _tv){
         food = Food.valueOf(_food);
         stars=_stars;
